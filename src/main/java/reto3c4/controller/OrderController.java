@@ -1,5 +1,6 @@
 package reto3c4.controller;
 
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -50,5 +51,18 @@ public class OrderController {
     public List<Order> getOrdersByZone(@PathVariable("zone") String zone){
         return orderService.getOrderByZone(zone);
     }
-
+    
+    @GetMapping("/salesman/{id}")
+    public List<Order> salesManExist (@PathVariable("id") int id){
+        return orderService.getOrderBySalesManId(id);
+    }
+    
+    @GetMapping("/state/{status}/{id}")
+    public List<Order> salesManIdAndStatusExist(@PathVariable("id") int id, @PathVariable("status") String status){
+        return orderService.getOrderBySalesManIdAndStatus(id, status);
+    }
+    @GetMapping("/date/{registerDay}/{id}")
+    public List<Order> getByRegisterDayAndSalesManId(@PathVariable("registerDay")String  registerDay,@PathVariable("id") Integer id){
+    return orderService.getByRegisterDayAndSalesManId(registerDay, id);
+    }
 }
